@@ -26,14 +26,14 @@ namespace AudioTester
 
         public readonly float Determinant => (a*d) - (b*c);
 
-        public static Vector2 operator*(Matrix2x2 matrix, Vector2 vector)
+        public static Vector2 operator*(Vector2 vector, Matrix2x2 matrix)
         {
             return new Vector2(matrix.a, matrix.c) * vector.X + new Vector2(matrix.b, matrix.d) * vector.Y;
         }
 
         public static Matrix2x2 operator*(Matrix2x2 a, Matrix2x2 b)
         {
-            return new Matrix2x2(b * new Vector2(a.a, a.c), b * new Vector2(a.b, a.d));
+            return new Matrix2x2(new Vector2(a.a, a.c) * b, new Vector2(a.b, a.d) * b);
         }
     }
 }

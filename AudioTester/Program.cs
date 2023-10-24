@@ -28,8 +28,8 @@ namespace AudioTester
 
                 for (int i = 0; i < array.Length; i++)
                 {
-                    g.DrawLine(background, (mat * array[i].a + new Vector2(1000, 1000)).GetPoint(), (mat * array[i].b + new Vector2(1000, 1000)).GetPoint());
-                    g.DrawLine(foreground, (mat * array[i].a + new Vector2(1000, 1000)).GetPoint(), (mat * array[i].b + new Vector2(1000, 1000)).GetPoint());
+                    g.DrawLine(background, (array[i].a * mat + new Vector2(1000, 1000)).GetPoint(), (array[i].b * mat + new Vector2(1000, 1000)).GetPoint());
+                    g.DrawLine(foreground, (array[i].a * mat + new Vector2(1000, 1000)).GetPoint(), (array[i].b * mat + new Vector2(1000, 1000)).GetPoint());
                 }
             }
 
