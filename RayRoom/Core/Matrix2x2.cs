@@ -33,7 +33,7 @@ namespace AudioTester
 
         public static Matrix2x2 operator*(Matrix2x2 a, Matrix2x2 b)
         {
-            return new Matrix2x2(a * new Vector2(b.a, b.c), a * new Vector2(b.b, b.d));
+            return new Matrix2x2(b * new Vector2(a.a, a.c), b * new Vector2(a.b, a.d));
         }
     }
 }
