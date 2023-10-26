@@ -1,6 +1,4 @@
-﻿using NAudio.Codecs;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
+﻿using NAudio.Wave;
 
 namespace AudioTester.Core
 {
@@ -22,16 +20,16 @@ namespace AudioTester.Core
             sample = 0;
 
             streamReader = new AudioFileReader(@"Resources\test.wav");
-            
+
             provider = streamReader.ToSampleProvider();
         }
 
         public int Read(float[] buffer, int offset, int count)
         {
-            int length = provider.Read(buffer, offset, count); 
-            
+            int length = provider.Read(buffer, offset, count);
+
             Console.WriteLine("i: {0}; o:{1}", count, length);
-            
+
             if (length < count)
             {
                 streamReader.Position = 0;

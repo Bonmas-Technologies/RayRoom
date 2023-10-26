@@ -7,7 +7,7 @@ namespace AudioTester
         float a, b, c, d;
 
         public static Matrix2x2 Identity => new Matrix2x2(Vector2.UnitX, Vector2.UnitY);
-        
+
         public Matrix2x2(float a, float b, float c, float d)
         {
             this.a = a;
@@ -24,14 +24,14 @@ namespace AudioTester
             this.d = b.Y;
         }
 
-        public readonly float Determinant => (a*d) - (b*c);
+        public readonly float Determinant => (a * d) - (b * c);
 
-        public static Vector2 operator*(Vector2 vector, Matrix2x2 matrix)
+        public static Vector2 operator *(Vector2 vector, Matrix2x2 matrix)
         {
             return new Vector2(matrix.a, matrix.c) * vector.X + new Vector2(matrix.b, matrix.d) * vector.Y;
         }
 
-        public static Matrix2x2 operator*(Matrix2x2 a, Matrix2x2 b)
+        public static Matrix2x2 operator *(Matrix2x2 a, Matrix2x2 b)
         {
             return new Matrix2x2(new Vector2(a.a, a.c) * b, new Vector2(a.b, a.d) * b);
         }

@@ -45,14 +45,14 @@ namespace RayRoom.Core
             return new Distances(u, v);
         }
 
-        public static Distances TestSphereToRay(Sphere a, Ray b, out CastInfo info)
+        public static Distances TestSphereToRay(Circle a, Ray b, out CastInfo info)
         {
             Vector2 position = b.position - a.center;
-            
+
             float vb = 2 * b.direction.X * position.X + 2 * b.direction.Y * position.Y;
             float va = MathF.Pow(b.direction.X, 2) + MathF.Pow(b.direction.Y, 2);
             float vc = MathF.Pow(position.X, 2) + MathF.Pow(position.Y, 2) - MathF.Pow(a.radius, 2);
-            
+
             float discr = MathF.Pow(vb, 2) - 4 * va * vc;
 
             Distances result;
@@ -96,8 +96,8 @@ namespace RayRoom.Core
             else
                 return n1;
         }
-        
-        public static bool RaycastRayToSphere(Sphere sphere, Ray b, out CastInfo info)
+
+        public static bool RaycastRayToSphere(Circle sphere, Ray b, out CastInfo info)
         {
             var distances = TestSphereToRay(sphere, b, out info);
 

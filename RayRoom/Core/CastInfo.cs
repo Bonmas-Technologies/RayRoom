@@ -8,6 +8,7 @@ namespace RayRoom.Core
         public readonly Vector2 normal;
         public readonly float distance;
         public readonly bool collided;
+
         public static CastInfo Default => new CastInfo(Vector2.Zero, Vector2.Zero, float.MaxValue, false);
 
         public CastInfo(Vector2 point, Vector2 normal, float distance, bool collided)

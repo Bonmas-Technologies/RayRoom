@@ -9,35 +9,39 @@ namespace AudioTester
 {
     internal class Program
     {
+        private const int width = 1280;
+        private const int height = 720;
+        private const float scale = 100;
 #pragma warning disable CA1416 // Проверка совместимости платформы
         static void Main(string[] args)
         {
-            AudioSimulator a = new AudioSimulator();
+            AudioSimulator a = new AudioSimulator(new Settings(44100, 5, 330));
 
-            var array = a.Simulate(Vector2.Zero, 360);
-            var bitmap = new Bitmap(2000, 2000);
+            var array = a.Simulate(Vector2.Zero, 3600);
+            var bitmap = new Bitmap(width, height);
 
-            Matrix2x2 mat = new Matrix2x2(Vector2.UnitX * 100f, Vector2.UnitY * -100f);
+            Matrix2x2 mat = new(Vector2.UnitX * scale, Vector2.UnitY * -scale);
 
-            Pen background = new Pen(Color.FromArgb(5, Color.White), 4);
-            Pen foreground = new Pen(Color.FromArgb(25, Color.White), 1);
+            Pen foreground = new(Color.FromArgb(20, Color.White), 1);
 
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.Black);
 
+                Vector2 offset = new(width / 2, height / 2); 
                 for (int i = 0; i < array.Length; i++)
                 {
-                    g.DrawLine(background, (array[i].a * mat + new Vector2(1000, 1000)).GetPoint(), (array[i].b * mat + new Vector2(1000, 1000)).GetPoint());
-                    g.DrawLine(foreground, (array[i].a * mat + new Vector2(1000, 1000)).GetPoint(), (array[i].b * mat + new Vector2(1000, 1000)).GetPoint());
+                    g.DrawLine(foreground, 
+                        (array[i].a * mat + offset).GetPoint(), 
+                        (array[i].b * mat + offset).GetPoint());
                 }
             }
 
-            bitmap.Save("bitmap.bmp");
+            bitmap.Save($"bitmap.png");
 #pragma warning restore CA1416 // Проверка совместимости платформы
             return;
             var device = new RenderStreamer();
-            
+
             using (var wo = new WasapiOut(NAudio.CoreAudioApi.AudioClientShareMode.Shared, 150))
             {
                 wo.Init(device);
@@ -46,7 +50,7 @@ namespace AudioTester
                 while (wo.PlaybackState == PlaybackState.Playing)
                 {
                     Thread.Sleep(100);
-                    
+
                     if (Console.KeyAvailable)
                         wo.Stop();
                 }

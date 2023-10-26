@@ -21,7 +21,7 @@ namespace RayRoom.Tests
             Assert.IsFalse(CollisionHelpers.RaycastRayToRay(a, d, out info));
             Console.WriteLine(info.ToString());
         }
-        
+
         [TestMethod]
         public void TestRayToLineCollision()
         {

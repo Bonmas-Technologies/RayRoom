@@ -1,5 +1,4 @@
-﻿using System;
-using RayRoom.Core;
+﻿using RayRoom.Core;
 
 namespace RayRoom.Platform
 {

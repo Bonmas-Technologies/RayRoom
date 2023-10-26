@@ -1,7 +1,9 @@
 ﻿namespace RayRoom.Core
 {
-    public interface IStructure
+    public interface ICastObject
     {
+        bool IsAudioSource { get; }
+
         bool CastRay(Ray ray, out CastInfo info);
     }
 }

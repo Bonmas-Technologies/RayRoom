@@ -7,11 +7,9 @@ namespace AudioTester
     {
         public static Settings GetSettingsFromWaveFromat(WaveFormat format, Settings baseSettings)
         {
-            return new Settings(format.SampleRate, 
-                baseSettings.maxRayReflections, 
-                baseSettings.maxDiffusionRays, 
-                baseSettings.fadeFactorPerMeter, 
-                baseSettings.speedOfSoundMetersPerSec);
+            return new Settings(format.SampleRate,
+                baseSettings.maxRayReflections,
+                baseSettings.speedOfSound);
         }
     }
 }
