@@ -17,7 +17,7 @@ namespace RayRoom.Core
 
         public bool CastRay(Ray ray, out CastInfo info)
         {
-            return CollisionHelpers.RaycastRayToSphere(this, ray, out info);
+            return CollisionHelpers.RaycastRayToCircle(this, ray, out info);
         }
     }
 }

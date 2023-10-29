@@ -2,7 +2,7 @@
 
 namespace RayRoom.Core
 {
-    public class Ray
+    public class Ray : ICastObject
     {
         public readonly Vector2 position;
         public readonly Vector2 direction;
@@ -15,6 +15,13 @@ namespace RayRoom.Core
             this.direction = direction;
             this.distance = distance;
             this.bounces = bounces;
+        }
+
+        public bool IsAudioSource => false;
+
+        public bool CastRay(Ray ray, out CastInfo info)
+        {
+            return CollisionHelpers.RaycastRayToRay(this, ray, out info);
         }
 
         public override string? ToString()

@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayRoom", "RayRoom\RayRoom.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioTester", "AudioTester\AudioTester.csproj", "{BDA8477C-5901-4849-98D7-134871412EF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayRoom.Tests", "RayRoom.Tests\RayRoom.Tests.csproj", "{B077A864-8279-4237-858B-37AA5A66C10D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayRoom.Tests", "RayRoom.Tests\RayRoom.Tests.csproj", "{B077A864-8279-4237-858B-37AA5A66C10D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayRoom.NAudioEngine", "RayRoom.NAudio\RayRoom.NAudioEngine.csproj", "{114D04B9-EAE7-4969-87A0-5F4652B4B088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B077A864-8279-4237-858B-37AA5A66C10D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B077A864-8279-4237-858B-37AA5A66C10D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B077A864-8279-4237-858B-37AA5A66C10D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114D04B9-EAE7-4969-87A0-5F4652B4B088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114D04B9-EAE7-4969-87A0-5F4652B4B088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114D04B9-EAE7-4969-87A0-5F4652B4B088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114D04B9-EAE7-4969-87A0-5F4652B4B088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ namespace RayRoom.Core
 {
     public static class CollisionHelpers
     {
-        private static float minimalThreshold = 0.001f;
+        public static float minimalThreshold = 0.001f;
 
         public struct Distances
         {
@@ -40,14 +40,21 @@ namespace RayRoom.Core
 
             Vector2 normal = GetClosestNormal(a.direction, b.direction);
 
-            info = new CastInfo(b.position + b.direction * v, normal, (v * b.direction).Length(), true);
+            info = new CastInfo(b.position + b.direction * v, normal, (v * b.direction).Length(), true, a);
 
             return new Distances(u, v);
         }
 
         public static Distances TestSphereToRay(Circle a, Ray b, out CastInfo info)
         {
+            info = CastInfo.Default;
+            Distances result = new Distances(0, 0);
+            
+
             Vector2 position = b.position - a.center;
+
+            if (position.LengthSquared() < a.radius * a.radius)
+                return result;
 
             float vb = 2 * b.direction.X * position.X + 2 * b.direction.Y * position.Y;
             float va = MathF.Pow(b.direction.X, 2) + MathF.Pow(b.direction.Y, 2);
@@ -55,7 +62,6 @@ namespace RayRoom.Core
 
             float discr = MathF.Pow(vb, 2) - 4 * va * vc;
 
-            Distances result;
 
             if (discr >= 0)
             {
@@ -71,13 +77,8 @@ namespace RayRoom.Core
 
                 Vector2 normal = (b.position + b.direction * distance - a.center) / a.radius * -1f;
 
-                info = new CastInfo(b.position + b.direction * distance, normal, (b.direction * distance).Length(), true);
+                info = new CastInfo(b.position + b.direction * distance, normal, (b.direction * distance).Length(), true, a);
                 result = new Distances(t0, t1);
-            }
-            else
-            {
-                info = CastInfo.Default;
-                result = new Distances(0, 0);
             }
 
             return result;
@@ -97,7 +98,7 @@ namespace RayRoom.Core
                 return n1;
         }
 
-        public static bool RaycastRayToSphere(Circle sphere, Ray b, out CastInfo info)
+        public static bool RaycastRayToCircle(Circle sphere, Ray b, out CastInfo info)
         {
             var distances = TestSphereToRay(sphere, b, out info);
 
@@ -112,7 +113,7 @@ namespace RayRoom.Core
 
         public static bool RaycastRayToLine(Line aLine, Ray b, out CastInfo info)
         {
-            Ray a = new Ray(aLine.a, aLine.b - aLine.a);
+            Ray a = new(aLine.a, aLine.b - aLine.a);
 
             var result = TestRays(a, b, out info);
 

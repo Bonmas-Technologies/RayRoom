@@ -9,7 +9,8 @@ namespace AudioTester
         {
             return new Settings(format.SampleRate,
                 baseSettings.maxRayReflections,
-                baseSettings.speedOfSound);
+                baseSettings.speedOfSound,
+                5f);
         }
     }
 }

@@ -4,29 +4,36 @@ namespace RayRoom.Core
 {
     public interface ISampleHandler
     {
-        int Read(float[] buffer, int offset, int count);
+        int WriteTo(float[] buffer, int offset, int count);
     }
 
 
     public class AudioSource : ICastObject
     {
-        public const float size = 1.0f;
+        public const float size = 1f;
 
         public bool IsAudioSource => true;
+        public float Loudness => loudness;
+        public ISampleHandler Handler => handler;
 
         private Circle source;
-        private float strength;
+        private float loudness;
+        private ISampleHandler handler;
 
-        public AudioSource(Vector2 position, float strength)
+        public AudioSource(Vector2 position, float loudness, ISampleHandler handler)
         {
-            source = new Circle(position, strength);
-            this.strength = strength;
+            source = new Circle(position, size);
+            this.loudness = loudness;
+            this.handler = handler;
         }
-
 
         public bool CastRay(Ray ray, out CastInfo info)
         {
-            return source.CastRay(ray, out info);
+            var result = CollisionHelpers.RaycastRayToCircle(source, ray, out info);
+
+            info = new CastInfo(info.point, info.normal, info.distance, info.collided, this);
+
+            return result;
         }
     }
 }
